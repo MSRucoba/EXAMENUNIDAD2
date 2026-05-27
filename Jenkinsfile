@@ -14,8 +14,8 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                // Aquí usamos la IP que encontramos para tu WSL
-                sh './mvnw sonar:sonar -Dsonar.host.url=http://192.168.176.1:9000'
+                // Token insertado correctamente
+                sh './mvnw sonar:sonar -Dsonar.host.url=http://192.168.176.1:9000 -Dsonar.token=sqa_9f93c7d226dade3505055b69bcc45231fac60ce9'
             }
         }
     }
