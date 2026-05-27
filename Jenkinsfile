@@ -19,12 +19,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // 1. Borramos el contenedor viejo si existe para no tener conflictos
+                // 1. Borramos el contenedor viejo si existe
                 sh 'docker rm -f api-orders || true'
-                // 2. Construimos la imagen localmente (asumiendo que tienes un Dockerfile)
+                // 2. Construimos la imagen localmente
                 sh 'docker build -t api-orders-image .'
-                // 3. Lanzamos el contenedor en el puerto 8080
-                sh 'docker run -d --name api-orders -p 8080:8080 api-orders-image'
+                // 3. Lanzamos el contenedor usando el puerto 8082 (host) -> 8080 (contenedor)
+                sh 'docker run -d --name api-orders -p 8082:8080 api-orders-image'
             }
         }
     }
