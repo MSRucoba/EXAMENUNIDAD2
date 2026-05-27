@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Damos permisos de ejecución al wrapper de Maven
                 sh 'chmod +x mvnw'
                 sh './mvnw clean package'
             }
@@ -15,7 +14,8 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                sh './mvnw sonar:sonar'
+                // Aquí usamos la IP que encontramos para tu WSL
+                sh './mvnw sonar:sonar -Dsonar.host.url=http://192.168.176.1:9000'
             }
         }
     }
