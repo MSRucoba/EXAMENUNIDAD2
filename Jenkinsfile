@@ -3,6 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                // Damos permisos de ejecución al wrapper de Maven
+                sh 'chmod +x mvnw'
                 sh './mvnw clean package'
             }
         }
